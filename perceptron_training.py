@@ -32,7 +32,7 @@ def plot_decision_regions(x, y, classifier, resolution=0.02):
                     edgecolor = 'black')
 
 
-dataFilePath = "C:/Users/E40061671/Documents/CodingShenanigans/MachineLearning/datasets/iris.data"
+dataFilePath = "/datasets/iris.data"
 df = pd.read_csv(dataFilePath, header=None)
 
 # select setosa and versicolor 
