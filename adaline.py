@@ -102,7 +102,11 @@ class AdalineSGD(object):
         self.random_state = random_state
     
     def _shuffle(self, X, y): 
-        """ Shuffle training data"""
+         """ Shuffle training data
+            Works via the permutation function in np.random. We generate a random sequence of unique numbers in the range 0 to 100. 
+            Those numbers can then be used as indices to shuffle our feature matrix and class label vector. 
+            We can then use the fit method to train AdalineSGD classifier and use our plot_decision_regions function to plot the training plots
+        """
         r = self.rgen.permutation(len(y))
         return X[r], y[r]
 
@@ -121,7 +125,10 @@ class AdalineSGD(object):
         cost = 0.5 * error**2
         return cost
     def _partial_fit(self, X, y): 
-        """ Fit training data without reinitializing the weights"""
+        """ Fit training data without reinitializing the weights. 
+            To use this method for online learning with streaming data, call the partial_fit function but feed in individual samples
+            e.g. ada.partial_fit(X_std[0, :], y)
+        """
         if not self.w_initialized:
             self._initialize_weights(X.shape[1])
         if y.ravel().shape[0] > 1: 
@@ -162,7 +169,11 @@ class AdalineSGD(object):
         return np.dot(x, self.w_[1:] + self.w_[0])
     
     def activation(self, x):
-        """ Computer linear activation"""
+        """ Computer linear activation. 
+            Serves no purpose in current state. Essentially an identity function for this exercise. 
+            This function is meant to illustrate how information flows through a single layer neural network: 
+                features from the input data, net input, activation, and output
+        """
         return x
     
     def predict(self, x): 
