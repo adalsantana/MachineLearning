@@ -26,7 +26,7 @@ class Perceptron(object):
         self.n_iter = n_iter
         self.random_state = random_state
 
-    def fit(self, x, y):
+    def fit(self, X, y):
         """ Fit training data 
         
         Parameters: 
@@ -42,12 +42,12 @@ class Perceptron(object):
         """
 
         rgen = np.random.RandomState(self.random_state)
-        self.w_ = rgen.normal(loc = 0.0, scale = 0.01, size = 1 + x.shape[1])
+        self.w_ = rgen.normal(loc = 0.0, scale = 0.01, size = 1 + X.shape[1])
         self.errors_ = []
 
         for _ in range(self.n_iter):
             errors = 0
-            for xi, target in zip(x, y):
+            for xi, target in zip(X, y):
                 update = self.eta * (target - self.predict(xi))
                 self.w_[1:] += update * xi
                 self.w_[0] += update
@@ -55,10 +55,10 @@ class Perceptron(object):
             self.errors_.append(errors)
         return self
     
-    def net_input(self, x): 
+    def net_input(self, X): 
         """ Calculate net input """
-        return np.dot(x, self.w_[1:] + self.w_[0])
+        return np.dot(X, self.w_[1:]) + self.w_[0]
     
-    def predict(self, x): 
+    def predict(self, X): 
         """ Return class label after unit step"""
-        return np.where(self.net_input(x) >= 0.0, 1, -1)
+        return np.where(self.net_input(X) >= 0.0, 1, -1)
