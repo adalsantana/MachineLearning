@@ -6,7 +6,7 @@ from matplotlib.colors import ListedColormap
 
 def plot_decision_regions(X, y, classifier, resolution=0.02):
     # Setup marker generator and color map
-    markers = ('s', 'x', 'o', '^', 'v')
+    markers = ('s', 'X', 'o', '^', 'v')
     colors = ('red', 'blue', 'lightgreen', 'gray', 'cyan')
     cmap = ListedColormap(colors[:len(np.unique(y))])
 
@@ -32,3 +32,4 @@ def plot_decision_regions(X, y, classifier, resolution=0.02):
                     label = cl, 
                     edgecolor ='black')
         
+df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
