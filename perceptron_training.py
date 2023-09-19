@@ -3,12 +3,13 @@ import numpy as np
 import matplotlib.pyplot as plt 
 from matplotlib.colors import ListedColormap
 from perceptron import Perceptron
-
+# NOTE: LEFT OFF WITH A MARKER GETTING AN INVALID VALUE ERROR
 def plot_decision_regions(X, y, classifier, resolution=0.02): 
     # setup marker generator and color map 
     markers = ('s', 'x', 'o', '^', 'v')
+    # markers = enumerate(markers)
     colors = ('red', 'blue', 'lightgreen', 'gray', 'cyan')
-    colors = np.array(colors)
+    # colors = np.array(colors)
     cmap = ListedColormap(colors[:len(np.unique(y))])
 
     # plot the decision surface 
@@ -28,7 +29,7 @@ def plot_decision_regions(X, y, classifier, resolution=0.02):
                     y = X[y == cl, 1], 
                     alpha = 0.8, 
                     c = colors[idx], 
-                    markers = markers[idx], 
+                    marker = markers[idx], 
                     label = cl, 
                     edgecolor = 'black')
 
